@@ -7,6 +7,7 @@ import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
+import exceptions.NotFoundException;
 import facade.Facade;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,7 +32,7 @@ public class ControlCRUD {
 
 //__________________________________________________________________________________
 //    Person Methods
-    public Person getPersonByPhonenum(String phoneNum) {
+    public Person getPersonByPhonenum(String phoneNum) throws NotFoundException {
         EntityManager EM = getEntityManager();
         Query q = EM.createNamedQuery("Phone.findByPhonenum").setParameter("phonenum", phoneNum);
         Phone p = EM.find(Phone.class, phoneNum);
@@ -39,7 +40,7 @@ public class ControlCRUD {
 
     }
     
-    public List<Person> getAllPersons() {
+    public List<Person> getAllPersons() throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createNamedQuery("Person.findAll");
@@ -49,7 +50,7 @@ public class ControlCRUD {
         }
     }
     
-    public Person getPerson(int id) {
+    public Person getPerson(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             return em.find(Person.class, id);
@@ -72,7 +73,7 @@ public class ControlCRUD {
         }
     }
     
-     public Person deletePerson(int id) {
+     public Person deletePerson(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             Person p = em.find(Person.class, id);
@@ -101,12 +102,12 @@ public class ControlCRUD {
     }
 //___________________________________________________________________________________________________
 //    CityInfo Methods
-     public static List<CityInfo> getZipcodes() {
+     public static List<CityInfo> getZipcodes() throws NotFoundException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 //___________________________________________________________________________________________________
 //    Company Methods
-     public List<Company> getAllCompanys() {
+     public List<Company> getAllCompanys() throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createNamedQuery("Company.findAll");
@@ -116,7 +117,7 @@ public class ControlCRUD {
         }
     }
 
-    public static Company getCompanyByPhone(String phoneNumber) {
+    public static Company getCompanyByPhone(String phoneNumber) throws NotFoundException {
         Company c = new Company();
         return c;
     }
@@ -154,7 +155,7 @@ public class ControlCRUD {
         }
     }
     
-    public Company deleteCompany(int id) {
+    public Company deleteCompany(int id) throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             Company c = em.find(Company.class, id);
@@ -167,7 +168,7 @@ public class ControlCRUD {
         }
     }
     
-    public Company getCompany(int cvr) {
+    public Company getCompany(int cvr) throws NotFoundException {
         EntityManager em = getEntityManager();
         try {
             Query query = em.createNamedQuery("Company.findByCvr");

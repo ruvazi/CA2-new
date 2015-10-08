@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import control.ControlCRUD;
 import entity.*;
+import exceptions.NotFoundException;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -46,14 +47,14 @@ public class PersonResource {
     @GET
     @Path("complete")
     @Produces("application/json")
-    public String getAllPersons() {
+    public String getAllPersons() throws NotFoundException {
         return JSONConverter.getJSONFromPersonList(cc.getAllPersons());
     }
     
     @GET
     @Path("complete/phone/{phonenum}")
     @Produces("application/json")
-    public String getPersonByPhonenum(@PathParam("phonenum") String phonenum){
+    public String getPersonByPhonenum(@PathParam("phonenum") String phonenum) throws NotFoundException{
         Person p = cc.getPersonByPhonenum(phonenum);
         return JSONConverter.getJSONFromSinglePersonContact(p.toString());
     }
@@ -61,7 +62,7 @@ public class PersonResource {
     @GET
     @Path("complete/{id}")
     @Produces("application/json")
-    public String getPersonByID(@PathParam("id") int id) {
+    public String getPersonByID(@PathParam("id") int id) throws NotFoundException {
         return JSONConverter.getJSONFromPerson(cc.getPerson(id));
     }
 

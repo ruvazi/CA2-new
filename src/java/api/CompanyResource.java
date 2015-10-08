@@ -8,6 +8,7 @@ package api;
 import entity.Company;
 import control.ControlCRUD;
 import Utility.JSONConverter;
+import exceptions.NotFoundException;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -41,14 +42,14 @@ public class CompanyResource {
     @GET
     @Path("complete")
     @Produces("application/json")
-    public String getAllCompanys() {
+    public String getAllCompanys() throws NotFoundException {
         return JSONConverter.getJSONfromCompanies(cc.getAllCompanys());
     }
 
     @GET
     @Path("complete/{cvr}")
     @Produces("application/json")
-    public String getCompanyByID(@PathParam("cvr") int cvr) {
+    public String getCompanyByID(@PathParam("cvr") int cvr) throws NotFoundException {
         return JSONConverter.getJSONFromCompanyByCVR(cc.getCompany(cvr));
     }
 
@@ -74,7 +75,7 @@ public class CompanyResource {
     @DELETE
     @Path("{id}")
     @Produces("application/json")
-    public String deletePerson(@PathParam("id") int id) {
+    public String deletePerson(@PathParam("id") int id) throws NotFoundException {
         Company c = cc.deleteCompany(id);
         return JSONConverter.getJSONFromCompany(c);
     }
