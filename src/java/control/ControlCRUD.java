@@ -29,7 +29,9 @@ public class ControlCRUD {
         return emf.createEntityManager();
     }
 
-    public Person getPerson(String phoneNum) {
+//__________________________________________________________________________________
+//    Person Methods
+    public Person getPersonByPhonenum(String phoneNum) {
         EntityManager EM = getEntityManager();
         Query q = EM.createNamedQuery("Phone.findByPhonenum").setParameter("phonenum", phoneNum);
         Phone p = EM.find(Phone.class, phoneNum);
@@ -55,66 +57,7 @@ public class ControlCRUD {
             em.close();
         }
     }
-
-//    public static List<Person> getPersonsByHobby(Hobby hobby) {
-//        Query q = EM.createNamedQuery("Hobby.findByHobbyname").setParameter("hobbyname", hobby.getHobbyname());
-//        List<Hobby> lh = q.getResultList();
-//        List<Person> l = new ArrayList();
-////        System.out.println(lh.iterator().next());
-//        for (Hobby h : lh) {
-//            l.add(h.getIdH());
-//        }
-//        return l;
-//    }
-
-//    public static List<Person> getPersonsByCity(String zip) {
-////        Query q = EM.createNamedQuery("CityInfo.findByZipcode").setParameter("zipcode", zip);
-////        CityInfo ci = (CityInfo) q.getSingleResult();
-////        List<Address> la = (List<Address>) ci.getAddressCollection();
-////        List<InfoEntity> lie = new ArrayList();
-////        for (Address a : la) {
-////            lie.add(a.getIdA());
-////        }
-////        List<Person> lp = (List<Person>) lie.get(0).getPersonCollection();
-////        return lp;
-//        Query query = EM.createNamedQuery("Person.findByCity");
-//        query.setParameter("zip", zip);
-//        return query.getResultList();
-//
-//    }
-
-    public static Company getCompanyByPhone(String phoneNumber) {
-//        Query q = EM.createNamedQuery("Phone.findByPhonenum").setParameter("phonenum", phoneNumber);
-//        Phone p = (Phone) q.getSingleResult();
-//        InfoEntity ie = p.getIdP();
-//        List<Company> cc = (List<Company>) ie.getCompanyCollection();
-        Company c = new Company();
-        return c;
-    }
-
-//    public static Company getCompanyByCVR(int cvr) {
-//        Query q = EM.createNamedQuery("Company.findByCvr");
-//        q.setParameter("cvr", cvr);
-//        return (Company) q.getSingleResult();
-//    }
-
-//    public static List<Company> getCompaniesByStaffCount(int staffMembers) {
-//        Query q = EM.createNamedQuery("Company.findByNumemployees");
-//        q.setParameter("numemployees", staffMembers);
-//        return q.getResultList();
-//    }
-
-//    public static int getHobbyCount(String hobby) {
-//        Query q = EM.createNamedQuery("Person.findByHobbyCount");
-//        q.setParameter("hobbyname", hobby);
-//        return (Integer) q.getSingleResult();
-//
-//    }
-
-    public static List<CityInfo> getZipcodes() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    
     public Person createPerson(Person p) {
 //        System.out.println(p);
         EntityManager EM = getEntityManager();
@@ -126,6 +69,74 @@ public class ControlCRUD {
             return p;
         } finally {
             EM.close();
+        }
+    }
+    
+     public Person deletePerson(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Person p = em.find(Person.class, id);
+            em.getTransaction().begin();
+            em.remove(p);
+            em.getTransaction().commit();
+            return p;
+        } finally {
+            em.close();
+        }
+    }
+
+    public Person editPerson(Person p) {
+        EntityManager em = getEntityManager();
+        try {
+            Person edited = em.find(Person.class, p.getId());
+            edited.setFirstname(p.getFirstname());
+            edited.setLastname(p.getLastname());
+            em.getTransaction().begin();
+            em.merge(edited);
+            em.getTransaction().commit();
+            return edited;
+        } finally {
+            em.close();
+        }
+    }
+//___________________________________________________________________________________________________
+//    CityInfo Methods
+     public static List<CityInfo> getZipcodes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+//___________________________________________________________________________________________________
+//    Company Methods
+     public List<Company> getAllCompanys() {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createNamedQuery("Company.findAll");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public static Company getCompanyByPhone(String phoneNumber) {
+        Company c = new Company();
+        return c;
+    }
+    
+    public Company editCompany(Company c) {
+        EntityManager em = getEntityManager();
+        try {
+            Company edited = em.find(Company.class, c.getId());
+            edited.setCompanyName(c.getCompanyName());
+            edited.setEmail(c.getEmail());
+            edited.setCvr(c.getCvr());
+            edited.setDescription(c.getDescription());
+            edited.setMarketValue(c.getMarketValue());
+            edited.setNumEmployees(c.getNumEmployees());
+            em.getTransaction().begin();
+            em.merge(edited);
+            em.getTransaction().commit();
+            return edited;
+        } finally {
+            em.close();
         }
     }
     
@@ -142,21 +153,36 @@ public class ControlCRUD {
             EM.close();
         }
     }
-
+    
+    public Company deleteCompany(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            Company c = em.find(Company.class, id);
+            em.getTransaction().begin();
+            em.remove(c);
+            em.getTransaction().commit();
+            return c;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Company getCompany(int cvr) {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createNamedQuery("Company.findByCvr");
+            query.setParameter("cvr", cvr);
+            return (Company) query.getResultList().get(0);
+        } finally {
+            em.close();
+        }
+    }
+//________________________________________________________________________________
+//    Hobby Methods
     public static void createHobby() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static void createCompany() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void deletePerson(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static void editPerson(long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

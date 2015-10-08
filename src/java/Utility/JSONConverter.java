@@ -11,6 +11,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import entity.Company;
 import entity.Person;
+import entity.Phone;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,9 +39,10 @@ public class JSONConverter {
         return gson.toJson(obj);
     }
 
-    public static String getJSONFromSinglePersonContact(int i) {
+    public static String getJSONFromSinglePersonContact(String i) {
+       
         JsonObject obj = new JsonObject();
-        obj.addProperty("phonenumber", i);
+        obj.addProperty("phonenum", i);
 
         return gson.toJson(obj);
     }
