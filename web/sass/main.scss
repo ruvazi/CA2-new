@@ -1,20 +1,26 @@
 $body-bg: white;
-
-$navbar-height: 70px;
-$navbar-inverse-bg: #FFD716;
-$navbar-inverse-color: black;
-$navbar-inverse-brand-color: black;
+$navbar-height: 55px;
+$navbar-inverse-bg: #333;
+$navbar-inverse-color: white;
+$navbar-inverse-brand-color: #97ff87;
 $navbar-inverse-toggle-hover-bg:            none;
 $navbar-inverse-toggle-icon-bar-bg:         black;
 $navbar-inverse-toggle-border-color:        none;
-$navbar-inverse-link-color:                 black;
-$navbar-inverse-link-hover-bg: #FDBD00;
-$navbar-inverse-link-active-bg: #FDBD00;
+$navbar-inverse-link-color:                 white;
+$navbar-inverse-link-active-color:          #97ff87;
+$navbar-inverse-link-hover-bg: #333;
+$navbar-inverse-link-active-bg: #333;
+$container-desktop: 1000px !important;
+$headings-font-weight:    700 !default;
 
 .logo {
   max-height: 80px;
   padding-top: 20px;
   padding-bottom: 10px;
+}
+
+body {
+  margin-bottom: 50px !important;
 }
 
 
