@@ -1,0 +1,23 @@
+$body-bg: white;
+
+$navbar-height: 70px;
+$navbar-inverse-bg: #FFD716;
+$navbar-inverse-color: black;
+$navbar-inverse-brand-color: black;
+$navbar-inverse-toggle-hover-bg:            none;
+$navbar-inverse-toggle-icon-bar-bg:         black;
+$navbar-inverse-toggle-border-color:        none;
+$navbar-inverse-link-color:                 black;
+$navbar-inverse-link-hover-bg: #FDBD00;
+$navbar-inverse-link-active-bg: #FDBD00;
+
+.logo {
+  max-height: 80px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+
+
+// End of file
+@import 'bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss'
