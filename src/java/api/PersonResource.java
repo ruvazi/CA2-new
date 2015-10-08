@@ -28,7 +28,7 @@ import javax.ws.rs.core.Response;
  *
  * @author Emil
  */
-@Path("generic")
+@Path("person")
 public class PersonResource {
     Gson gson;
 
@@ -51,7 +51,7 @@ public class PersonResource {
     }
     
     @GET
-    @Path("complete/{phonenum}")
+    @Path("complete/phone/{phonenum}")
     @Produces("application/json")
     public String getPersonByPhonenum(@PathParam("phonenum") String phonenum){
         Person p = cc.getPersonByPhonenum(phonenum);
@@ -68,7 +68,9 @@ public class PersonResource {
     @PUT
     @Consumes("application/json")
     public void putJson(String content) {
+        
     }
+    
     @POST
     @Produces("application/json")
     @Consumes("application/json")

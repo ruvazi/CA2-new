@@ -48,23 +48,24 @@ public class CompanyResource {
     @GET
     @Path("complete/{cvr}")
     @Produces("application/json")
-    public String getPersonByID(@PathParam("cvr") int cvr) {
+    public String getCompanyByID(@PathParam("cvr") int cvr) {
         return JSONConverter.getJSONFromCompanyByCVR(cc.getCompany(cvr));
     }
 
     @POST
     @Produces("application/json")
     @Consumes("application/json")
-    public String CreateNewPerson(String company) {
+    public String CreateNewCompany(String company) {
         Company c = JSONConverter.getCompanyFromJson(company);
         c = cc.createCompany(c);
         return JSONConverter.getJSONFromCompany(c);
     }
 //
     @PUT
+    @Path("edit/{edit}")
     @Produces("application/json")
     @Consumes("application/json")
-    public String editPerson(String company) {
+    public String editCompany(String company) {
         Company c = JSONConverter.getCompanyFromJson(company);
         c = cc.editCompany(c);
         return JSONConverter.getJSONFromCompany(c);

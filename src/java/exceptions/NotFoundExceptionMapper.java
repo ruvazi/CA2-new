@@ -15,6 +15,7 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
     ServletContext context;
     @Override
     public Response toResponse(NotFoundException e) {
+        e.printStackTrace();
         JsonObject jo = new JsonObject();
 
         if (Boolean.valueOf(context.getInitParameter("debug"))) {

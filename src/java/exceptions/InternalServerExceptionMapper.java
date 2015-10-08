@@ -16,7 +16,7 @@ public class InternalServerExceptionMapper implements ExceptionMapper<Throwable>
 
     @Override
     public Response toResponse(Throwable e) {
-
+        e.printStackTrace();
         JsonObject jo = new JsonObject();
 
         if (Boolean.valueOf(context.getInitParameter("debug"))) {
