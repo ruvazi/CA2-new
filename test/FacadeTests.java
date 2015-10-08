@@ -24,7 +24,7 @@ import javax.persistence.*;
  */
 public class FacadeTests {
 
-    ControlCRUD ctrl = new ControlCRUD();
+    ControlCRUD cc = new ControlCRUD(Persistence.createEntityManagerFactory("PU"));
 
     public FacadeTests() {
     }
@@ -48,14 +48,14 @@ public class FacadeTests {
     @Test
     public void getCompanyByPhone(){
         Company c = new Company();
-        c = ctrl.getCompanyByPhone("49283753");
+        c = cc.getCompanyByPhone("49283753");
         assertEquals("Footlocker",c.getCompanyName());
     }
 
     @Test
     public void findPersonByCity() {
         List<Person> list = new ArrayList();
-        list = ctrl.getPersonsByCity("2412");
+        list = cc.getPersonsByCity("2412");
         Person p = list.get(0);
         assertEquals("Mette", p.getFirstname());
     }
@@ -65,14 +65,14 @@ public class FacadeTests {
         List<Person> list = new ArrayList();
         Hobby h = new Hobby();
         h.setHobbyname("Crocket");
-        list = ctrl.getPersonsByHobby(h);
+        list = cc.getPersonsByHobby(h);
         Person p = list.get(0);
         assertEquals("Jens", p.getFirstname());
     }
 
     @Test
     public void findPersonByPhone() {
-        Person p = ctrl.getPerson("49283753");
+        Person p = cc.getPerson("49283753");
         assertEquals("Jens", p.getFirstname());
     }
 }

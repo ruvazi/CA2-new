@@ -36,6 +36,25 @@ public class ControlCRUD {
         return EM.find(Person.class, p.getId());
 
     }
+    
+    public List<Person> getAllPersons() {
+        EntityManager em = getEntityManager();
+        try {
+            Query query = em.createNamedQuery("Person.findAll");
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Person getPerson(int id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Person.class, id);
+        } finally {
+            em.close();
+        }
+    }
 
 //    public static List<Person> getPersonsByHobby(Hobby hobby) {
 //        Query q = EM.createNamedQuery("Hobby.findByHobbyname").setParameter("hobbyname", hobby.getHobbyname());
@@ -97,7 +116,21 @@ public class ControlCRUD {
     }
 
     public Person createPerson(Person p) {
-        System.out.println(p);
+//        System.out.println(p);
+        EntityManager EM = getEntityManager();
+        
+        try {
+            EM.getTransaction().begin();
+            EM.persist(p);
+            EM.getTransaction().commit();
+            return p;
+        } finally {
+            EM.close();
+        }
+    }
+    
+    public Company createCompany(Company p) {
+//        System.out.println(p);
         EntityManager EM = getEntityManager();
         
         try {

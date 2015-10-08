@@ -10,7 +10,7 @@ import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import control.ControlCRUD;
-import entity.Person;
+import entity.*;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
@@ -43,13 +43,19 @@ public class PersonResource {
             .create();
 }
 
-//    @GET
-//    @Path("{phoneNumber}")
-//    @Produces("application/json")
-//    public Response getPerson(@PathParam("phoneNumber") String phoneNumber) {
-//        System.out.println(phoneNumber);
-//        return Response.status(Response.Status.OK).entity(gson.toJson(ControlCRUD.getPerson(phoneNumber))).build();
-//    }
+    @GET
+    @Path("complete")
+    @Produces("application/json")
+    public String getPersons() {
+        return JSONConverter.getJSONFromPersonList(cc.getAllPersons());
+    }
+    
+    @GET
+    @Path("complete/{id}")
+    @Produces("application/json")
+    public String getPersonByID(@PathParam("id") int id) {
+        return JSONConverter.getJSONFromPerson(cc.getPerson(id));
+    }
 
     @PUT
     @Consumes("application/json")
@@ -63,5 +69,14 @@ public class PersonResource {
         Person p = JSONConverter.getPersonFromJson(person);
         p = cc.createPerson(p);
         return JSONConverter.getJSONFromPerson(p);
+    }
+    @POST
+    @Path("company")
+    @Produces("application/json")
+    @Consumes("application/json")
+    public String CreateNewCompany(String company) {
+        Company c = JSONConverter.getCompanyFromJson(company);
+        c = cc.createCompany(c);
+        return JSONConverter.getJSONFromCompany(c);
     }
 }
