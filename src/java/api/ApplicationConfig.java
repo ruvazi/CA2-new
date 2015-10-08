@@ -32,6 +32,7 @@ public class ApplicationConfig extends Application {
         resources.add(api.CompanyResource.class);
         resources.add(api.PersonResource.class);
         resources.add(exceptions.InternalServerExceptionMapper.class);
+        resources.add(exceptions.UnauthorizedAccessExceptionMapper.class);
     }
     
 }
