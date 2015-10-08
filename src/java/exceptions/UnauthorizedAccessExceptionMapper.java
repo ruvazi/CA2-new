@@ -9,27 +9,31 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class InternalServerExceptionMapper implements ExceptionMapper<Throwable> {
+public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<UnauthorizedAccessException> {
 
     @Context
     ServletContext context;
 
     @Override
-    public Response toResponse(Throwable e) {
-
+    public Response toResponse(UnauthorizedAccessException e) {
         JsonObject jo = new JsonObject();
 
         if (Boolean.valueOf(context.getInitParameter("debug"))) {
+
             String err = "";
+
             StackTraceElement[] stack = e.getStackTrace();
+
             for (StackTraceElement elm : stack) {
                 err += elm.toString();
             }
+
             jo.addProperty("stackTrace", err);
         }
-        jo.addProperty("code", 500);
-        jo.addProperty("message", "An unknown internal error occured. Check internal server output.");
-        return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
-    }
 
+        jo.addProperty("code", 401);
+        jo.addProperty("message", "Access denied");
+
+        return Response.status(Response.Status.UNAUTHORIZED).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
+    }
 }
