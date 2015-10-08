@@ -46,8 +46,16 @@ public class PersonResource {
     @GET
     @Path("complete")
     @Produces("application/json")
-    public String getPersons() {
+    public String getAllPersons() {
         return JSONConverter.getJSONFromPersonList(cc.getAllPersons());
+    }
+    
+    @GET
+    @Path("complete/{phonenum}")
+    @Produces("application/json")
+    public String getPersonByPhonenum(@PathParam("phonenum") String phonenum){
+        Person p = cc.getPersonByPhonenum(phonenum);
+        return JSONConverter.getJSONFromSinglePersonContact(p.toString());
     }
     
     @GET
@@ -70,13 +78,5 @@ public class PersonResource {
         p = cc.createPerson(p);
         return JSONConverter.getJSONFromPerson(p);
     }
-    @POST
-    @Path("company")
-    @Produces("application/json")
-    @Consumes("application/json")
-    public String CreateNewCompany(String company) {
-        Company c = JSONConverter.getCompanyFromJson(company);
-        c = cc.createCompany(c);
-        return JSONConverter.getJSONFromCompany(c);
-    }
+    
 }
