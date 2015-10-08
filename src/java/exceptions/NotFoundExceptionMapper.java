@@ -9,12 +9,12 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<UnauthorizedAccessException> {
+public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundException> {
 
     @Context
     ServletContext context;
     @Override
-    public Response toResponse(UnauthorizedAccessException e) {
+    public Response toResponse(NotFoundException e) {
         JsonObject jo = new JsonObject();
 
         if (Boolean.valueOf(context.getInitParameter("debug"))) {
@@ -25,8 +25,8 @@ public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<Unauth
             }
             jo.addProperty("stackTrace", err);
         }
-        jo.addProperty("code", 401);
-        jo.addProperty("message", "Access denied. Check your login credentials.");
-        return Response.status(Response.Status.UNAUTHORIZED).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
+        jo.addProperty("code", 404);
+        jo.addProperty("message", "Resource not found. Please check your values and verify that they are correct.");
+        return Response.status(Response.Status.NOT_FOUND).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
     }
 }

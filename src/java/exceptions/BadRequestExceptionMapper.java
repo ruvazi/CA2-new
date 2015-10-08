@@ -9,14 +9,13 @@ import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
 @Provider
-public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<UnauthorizedAccessException> {
+public class BadRequestExceptionMapper implements ExceptionMapper<BadRequestException> {
 
     @Context
     ServletContext context;
     @Override
-    public Response toResponse(UnauthorizedAccessException e) {
+    public Response toResponse(BadRequestException e) {
         JsonObject jo = new JsonObject();
-
         if (Boolean.valueOf(context.getInitParameter("debug"))) {
             String err = "";
             StackTraceElement[] stack = e.getStackTrace();
@@ -25,8 +24,8 @@ public class UnauthorizedAccessExceptionMapper implements ExceptionMapper<Unauth
             }
             jo.addProperty("stackTrace", err);
         }
-        jo.addProperty("code", 401);
-        jo.addProperty("message", "Access denied. Check your login credentials.");
-        return Response.status(Response.Status.UNAUTHORIZED).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
+        jo.addProperty("code", 400);
+        jo.addProperty("message", "Malformed request. Please inspect your URL for errors.");
+        return Response.status(Response.Status.BAD_REQUEST).entity(jo.toString()).type(MediaType.APPLICATION_JSON).build();
     }
 }
