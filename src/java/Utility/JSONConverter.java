@@ -87,7 +87,7 @@ public class JSONConverter {
         obj.addProperty("name", c.getCompanyName());
         obj.addProperty("description", c.getDescription());
         obj.addProperty("marketvalue", c.getMarketValue());
-        obj.addProperty("number of employees", c.getNumEmployees());
+        obj.addProperty("employees", c.getNumEmployees());
         return gson.toJson(obj);
     }
     
@@ -99,7 +99,7 @@ public class JSONConverter {
         obj.addProperty("name", c.getCompanyName());
         obj.addProperty("description", c.getDescription());
         obj.addProperty("marketvalue", c.getMarketValue());
-        obj.addProperty("number of employees", c.getNumEmployees());
+        obj.addProperty("employees", c.getNumEmployees());
         return gson.toJson(obj);
     }
 }

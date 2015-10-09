@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -52,7 +53,7 @@ public class PersonResource {
     }
     
     @GET
-    @Path("complete/phone/{phonenum}")
+    @Path("phone/{phonenum}")
     @Produces("application/json")
     public String getPersonByPhonenum(@PathParam("phonenum") String phonenum) throws NotFoundException{
         Person p = cc.getPersonByPhonenum(phonenum);
@@ -67,9 +68,12 @@ public class PersonResource {
     }
 
     @PUT
+    @Path("edit")
     @Consumes("application/json")
-    public void putJson(String content) {
-        
+    public String editPerson(String person) throws NotFoundException {
+        Person p = JSONConverter.getPersonFromJson(person);
+        p = cc.editPerson(p);
+        return JSONConverter.getJSONFromPerson(p);
     }
     
     @POST
@@ -82,4 +86,10 @@ public class PersonResource {
         return JSONConverter.getJSONFromPerson(p);
     }
     
+    @DELETE
+    @Path("delete/{id}")
+    @Consumes("application/json")
+    public String deletePerson(@PathParam("id")int id) throws NotFoundException{
+         return JSONConverter.getJSONFromPerson(cc.deletePerson(id));
+    }
 }

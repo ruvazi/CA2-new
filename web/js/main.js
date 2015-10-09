@@ -3,12 +3,12 @@ $(document).ready(function () {
     ////////////////////////////////////////////////////////////////////////////
     ////////    GET PERSONS ON LOAD
 
-    apiGET('http://localhost:8084/api/person/complete/', personsLoaded200, personsLoaded404, personsLoaded500);
+    apiGET('http://localhost:8080/api/person/complete/', personsLoaded200, personsLoaded404, personsLoaded500);
 
     ////////////////////////////////////////////////////////////////////////////
     ////////    EVENT HANDLERS
     $("#get-person").on('click', function () {
-        apiGET('http://localhost:8084/api/person/complete/' + $("#get-person-field").val(),
+        apiGET('http://localhost:8080/api/person/complete/' + $("#get-person-field").val(),
                 singlePerson200, singlePerson404, singlePerson500);
     });
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
             email: $("#create-person-email").val()
         };
 
-        apiPOST('http://localhost:8084/api/person/', generatedJSON, personCreated200, personCreated404, personCreated500);
+        apiPOST('http://localhost:8080/api/person/', generatedJSON, personCreated200, personCreated404, personCreated500);
     });
 
     ////////////////////////////////////////////////////////////////////////////
@@ -82,7 +82,7 @@ $(document).ready(function () {
     function personCreated200(data) {
         $("#person-created").html("");
         $("#person-created").html('<br><p class="text-success">' + data.firstname + ' was succesfully created!' + '</p>');
-        apiGET('http://localhost:8084/api/person/complete/', personsLoaded200, personsLoaded404, personsLoaded500);
+        apiGET('http://localhost:8080/api/person/complete/', personsLoaded200, personsLoaded404, personsLoaded500);
     }
 
     function personCreated404() {
