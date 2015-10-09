@@ -35,7 +35,8 @@ public class ControlCRUD {
     public Person getPersonByPhonenum(String phoneNum) throws NotFoundException {
         EntityManager EM = getEntityManager();
         Query q = EM.createNamedQuery("Phone.findByPhonenum").setParameter("phonenum", phoneNum);
-        Phone p = EM.find(Phone.class, phoneNum);
+        int phoneInt = Integer.parseInt(phoneNum);
+        Phone p = EM.find(Phone.class, 12);
         return EM.find(Person.class, p.getId());
 
     }
