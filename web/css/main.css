@@ -6066,3 +6066,8 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+.label {
+    margin-left: 2px;
+    margin-right: 2px;
+}

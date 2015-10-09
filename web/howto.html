@@ -1,60 +1,165 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
-    <title>De Gule Sider</title>
-  </head>
-  <body>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
+        <title>De Gule Sider</title>
+    </head>
+    <body>
 
 
-    <nav class="navbar navbar-inverse navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="index.html">
-            PersonFinder
-          </a>
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html">
+                        PersonFinder
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="index.html">Persons</a></li>
+                        <li><a href="documentation.html">Companies</a></li>
+                        <li><a href="documentation.html">Documentation</a></li>
+                        <li class="active"><a href="howto.html">How to</a></li>
+                    </ul>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <h2>How to</h2>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-                <li><a href="index.html">Persons</a></li>
-                <li><a href="documentation.html">Companies</a></li>
-                <li><a href="documentation.html">Documentation</a></li>
-                <li class="active"><a href="howto.html">How to</a></li>
-              </ul>
-        </div><!--/.navbar-collapse -->
-      </div>
-    </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="page-header">
-              <h2>How to</h2>
-              <ol>
-                <li>opun in Nutbeens</li>
-                <li>cleck cliin and beld</li>
-                <li>deleute perist.xlm</li>
-                <li>cret new perist.xlm</li>
-                <li>mak for-loop IRL ans repeet 120 timez</li>
-                <li>now it werks</li>
-              </ol>
-          </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">                
+                    <div class="list-group">
+                        <a href="#" id="howtolist-getall" class="list-group-item">GET - all persons</a>
+                        <a href="#" id="howtolist-getspecific" class="list-group-item">GET - person by ID</a>
+                        <a href="#" id="howtolist-postperson" class="list-group-item">POST - a new person</a>
+                        <a href="#" id="howtolist-delete" class="list-group-item">DELETE - person by ID</a>
+                    </div>
+                </div>
+                <div class="col-md-7 howto howto-getall">
+                    <h4>GET</h4>
+                    <h5>All Persons</h5>
+                    <p>Returns all the persons in the database as a JavaScript array of Objects. </p>
+                    <br>
+                    <h5>Instructions:</h5>
+                    <p>Connecting to the API</p>
+                    <div class="well">
+                        GET http://localhost:8084/api/person/complete/
+                    </div>
+                    <p>Making the GET-request with AJAX</p>
+                    <div class="well">
+                        function apiGET(url, resp200, resp404, resp500) {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;$.ajax(url, {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: 'GET',    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statusCode: {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200: resp200,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;404: resp404,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500: resp500    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}               <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;});             <br>
+                        }               <br>
+                    </div>
+                </div>
+                <div class="col-md-7 howto howto-getspecific">
+                    <h4>GET</h4>
+                    <h5>Specific person by ID</h5>
+                    <p>Returns the person with the given ID as a JavaScript object </p>
+                    <br>
+                    <h5>Instructions:</h5>
+                    <p>Connecting to the API</p>
+                    <div class="well">
+                        GET http://localhost:8084/api/person/complete/{id}
+                    </div>
+                    <p>Making the GET-request with AJAX</p>
+                    <div class="well">
+                        function apiGET(url, resp200, resp404, resp500) {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;$.ajax(url, {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: 'GET',    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statusCode: {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200: resp200,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;404: resp404,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500: resp500    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}               <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;});             <br>
+                        }               <br>
+                    </div>
+                </div>
+                <div class="col-md-7 howto howto-postperson">
+                    <h4>POST</h4>
+                    <h5>Create new person</h5>
+                    <p>Returns all the persons in the database as a JavaScript array of Objects. </p>
+                    <br>
+                    <h5>Instructions:</h5>
+                    <p>Connecting to the API</p>
+                    <div class="well">
+                        POST http://localhost:8084/api/person/complete/
+                    </div>
+                    <p>Making the POST-request with AJAX</p>
+                    <div class="well">
+                        function apiPOST(url, obj, resp200, resp404, resp500) { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;$.ajax(url, { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data: JSON.stringify(obj), <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contentType: 'application/json', <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: 'POST', <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;async: true, <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statusCode: { <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200: resp200, <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;404: resp404, <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500: resp500 <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;}); <br>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-7 howto howto-delete">
+                    <h4>GET</h4>
+                    <h5>All Persons</h5>
+                    <p>Returns all the persons in the database as a JavaScript array of Objects. </p>
+                    <br>
+                    <h5>Instructions:</h5>
+                    <p>Connecting to the API</p>
+                    <div class="well">
+                        GET http://localhost:8084/api/person/complete/
+                    </div>
+                    <p>Making the GET-request with AJAX</p>
+                    <div class="well">
+                        function apiGET(url, resp200, resp404, resp500) {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;$.ajax(url, {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type: 'GET',    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;statusCode: {   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;200: resp200,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;404: resp404,   <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;500: resp500    <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}               <br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;});             <br>
+                        }               <br>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
 
-<!-- SCRIPTS -->
-  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script type="text/javascript" src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-  <script type="text/javascript" src="templates/includes.js"></script>
+        <!-- SCRIPTS -->
+        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+        <script type="text/javascript" src="templates/includes.js"></script>
+        <script src="js/howto.js"></script>
 
-  </body>
+    </body>
 </html>

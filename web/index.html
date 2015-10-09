@@ -1,98 +1,129 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
-        <title>De Gule Sider</title>
-    </head>
-    <body>
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <link rel="stylesheet" href="/css/main.css" media="screen" charset="utf-8">
+            <title>De Gule Sider</title>
+        </head>
+        <body>
 
 
-        <nav class="navbar navbar-inverse navbar-static-top">
+            <nav class="navbar navbar-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="index.html">
+                            PersonFinder
+                        </a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="index.html">Persons</a></li>
+                            <li><a href="documentation.html">Companies</a></li>
+                            <li><a href="documentation.html">Documentation</a></li>
+                            <li><a href="howto.html">How to</a></li>
+                        </ul>
+                    </div><!--/.navbar-collapse -->
+                </div>
+            </nav>
+
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="index.html">
-                        PersonFinder
-                    </a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="index.html">Persons</a></li>
-                        <li><a href="documentation.html">Companies</a></li>
-                        <li><a href="documentation.html">Documentation</a></li>
-                        <li><a href="howto.html">How to</a></li>
-                    </ul>
-                </div><!--/.navbar-collapse -->
-            </div>
-        </nav>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="page-header">
-                        <h2>Persons</h2>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-header">
+                            <h2>Persons</h2>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                
+            <div class="container">
+                <div class="row">
 
-                <div class="col-md-4">
-                    <h4>Create Person</h4>
-                    <div class="form-group">
-                        <input id="create-person-fname" type="text" class="form-control" placeholder="First Name...">
-                    </div>
-                    <div class="form-group">
-                        <input id="create-person-lname" type="text" class="form-control" placeholder="Last Name...">
-                    </div>
-                    <div class="form-group">
-                        <input id="create-person-email" type="text" class="form-control" placeholder="E-mail...">
-                    </div>
-                    <button id="create-person" class="btn btn-primary">Create</button>
-                    <div id="person-created"></div>
-                    <hr>
-                    <h4>Get person from ID</h4>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="get-person-field" placeholder="ID...">
-                    </div>
-                    <button id="get-person" class="btn btn-primary">Get</button>
-                    <div id="person"></div>
-                </div>
-                
-                
-                
-                <div class="col-md-8">
-                    <table id="person-table" class="table table-bordered table-condensed">
-                        <thead>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Settings</th>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table> 
+                    <div class="col-md-4">
+                        <h4>Create Person</h4>
+                        <div class="form-group">
+                            <input id="create-person-fname" type="text" class="form-control" placeholder="First Name...">
+                        </div>
+                        <div class="form-group">
+                            <input id="create-person-lname" type="text" class="form-control" placeholder="Last Name...">
+                        </div>
+                        <div class="form-group">
+                            <input id="create-person-email" type="text" class="form-control" placeholder="E-mail...">
+                        </div>
+                        <button id="create-person" class="btn btn-primary">Create</button>
+                        <div id="person-created"></div>
+                        <hr>
+                        <h4>Get person from ID</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="get-person-field" placeholder="ID...">
+                        </div>
+                        <button id="get-person" class="btn btn-primary">Get</button>
+                        <div id="person"></div>
+                    </div>
+
+
+
+                    <div class="col-md-8">
+                        <h4>Person List</h4>
+                        <table id="person-table" class="table table-bordered table-condensed">
+                            <thead>
+                            <th>ID</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Settings</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table> 
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <div class="modal fade" id="edit-person-modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Modal title</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input class="form-control" type="text" id="edit-firstname" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input class="form-control" type="text" id="edit-lastname" placeholder="Last Name">
+                                </div>
+                            </form>
+                            <div class="edit-user-status">
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Edit User</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
 
 
-        <!-- SCRIPTS -->
-        <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
-        <script type="text/javascript" src="templates/includes.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
+            <!-- SCRIPTS -->
+            <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+            <script type="text/javascript" src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js"></script>
+            <script type="text/javascript" src="templates/includes.js"></script>
+            <script type="text/javascript" src="js/main.js"></script>
 
-    </body>
-</html>
+        </body>
+    </html>
