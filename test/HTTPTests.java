@@ -132,7 +132,7 @@ public class HTTPTests {
     public void testEditPerson() {
         JsonObject json = new JsonObject();
         json.addProperty("id", 2);
-        json.add("email", "w@w.w");
+        json.addProperty("email", "w@w.w");
         json.addProperty("firstname", "Balls");
         json.addProperty("lastname", "Mahoney");
         
